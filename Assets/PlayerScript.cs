@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Unity.Netcode;
 
-public class MovementScript : NetworkBehaviour
+public class MovementScript : MonoBehaviour
 {
 
   public Rigidbody2D rb;
@@ -21,7 +20,7 @@ public class MovementScript : NetworkBehaviour
   void Update()
   {
 
-    if (!IsOwner) return;
+   // if (!IsOwner) return;
 
     horizontal = Input.GetAxisRaw("Vertical");
     vertical = Input.GetAxisRaw("Horizontal");

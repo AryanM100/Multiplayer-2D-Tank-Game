@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+  <head>
+    <title>WebSockets</title>
+  </head>
+
+  <body>
+    <div class="center">
+      <h1>Backend</h1>
+    </div>
+
+    <script>
+      window.onload = function(){
+        if(window["WebSocket"]){
+          console.log("supported")
+
+          conn = new WebSocket("ws://" + document.location.host + "/ws");
+        }
+        else{
+          alert("NONO")
+        }
+      }
+    </script>
+  </body>
+
+</html>

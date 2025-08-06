@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Unity.Netcode;
 
-public class Shoot : NetworkBehaviour
+public class Shoot : MonoBehaviour
 {
 
   [SerializeField] private GameObject shootpos;
@@ -23,7 +22,7 @@ public class Shoot : NetworkBehaviour
   void Update()
   {
 
-    if (!IsOwner) return;
+//    if (!IsOwner) return;
 
     if (Input.GetKey(KeyCode.L))
     {
@@ -35,18 +34,6 @@ public class Shoot : NetworkBehaviour
       angle.transform.Rotate(-1 * Vector3.forward * rotspeed);
     }
 
-    BulletServerRpc();
-  }
-
-  [ServerRpc]
-  private void BulletServerRpc()
-  {
-    BulletClientRpc();
-  }
-
-  [ClientRpc]
-  private void BulletClientRpc()
-  {
     Fire();
   }
 
@@ -57,7 +44,6 @@ public class Shoot : NetworkBehaviour
     if (Input.GetKey(KeyCode.Space) && diffTime > delay)
     {
       GameObject bullet = Instantiate(_bulprefab, shootpos.transform.position, angle.transform.rotation);
-      bullet.GetComponent<NetworkObject>().Spawn(true);
       Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
 
       rb.velocity = bulspeed * angle.transform.up;
